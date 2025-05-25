@@ -8,7 +8,7 @@ import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/editor";
 import { Route, Routes } from "react-router";
 import PeopleTable from "./people/table";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 
 export default function Courses({ courses }: { courses: any[]; }) {
