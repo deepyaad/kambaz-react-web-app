@@ -20,7 +20,6 @@ export default function TodoForm() {
                 <input value={todo.title}
                     onChange={ (e) => dispatch(setTodo({ ...todo, title: e.target.value }))}
                 />
-                
             </li>
         );
 }

@@ -1,0 +1,210 @@
+index.tsx?t=1748147471410:94 Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+    at Courses (index.tsx?t=1748147471410:94:23)
+    at renderWithHooks (chunk-VIJJTZRL.js?v=9300deac:11596:26)
+    at mountIndeterminateComponent (chunk-VIJJTZRL.js?v=9300deac:14974:21)
+    at beginWork (chunk-VIJJTZRL.js?v=9300deac:15962:22)
+    at HTMLUnknownElement.callCallback2 (chunk-VIJJTZRL.js?v=9300deac:3680:22)
+    at Object.invokeGuardedCallbackDev (chunk-VIJJTZRL.js?v=9300deac:3705:24)
+    at invokeGuardedCallback (chunk-VIJJTZRL.js?v=9300deac:3739:39)
+    at beginWork$1 (chunk-VIJJTZRL.js?v=9300deac:19818:15)
+    at performUnitOfWork (chunk-VIJJTZRL.js?v=9300deac:19251:20)
+    at workLoopSync (chunk-VIJJTZRL.js?v=9300deac:19190:13)Understand this error
+chunk-VIJJTZRL.js?v=9300deac:14080 The above error occurred in the <Courses> component:
+
+    at Courses (http://localhost:5173/src/kambaz/courses/index.tsx?t=1748147471410:23:3)
+    at ProtectedRoute (http://localhost:5173/src/kambaz/account/ProtectedRoute.tsx:20:42)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at div
+    at Kambaz (http://localhost:5173/src/kambaz/index.tsx?t=1748148144188:30:33)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at Provider (http://localhost:5173/node_modules/.vite/deps/react-redux.js?v=9300deac:923:11)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4565:15)
+    at HashRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9300deac:592:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-VIJJTZRL.js?v=9300deac:14080Understand this error
+chunk-VIJJTZRL.js?v=9300deac:9176 Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+    at Courses (index.tsx?t=1748147471410:94:23)
+    at renderWithHooks (chunk-VIJJTZRL.js?v=9300deac:11596:26)
+    at mountIndeterminateComponent (chunk-VIJJTZRL.js?v=9300deac:14974:21)
+    at beginWork (chunk-VIJJTZRL.js?v=9300deac:15962:22)
+    at beginWork$1 (chunk-VIJJTZRL.js?v=9300deac:19806:22)
+    at performUnitOfWork (chunk-VIJJTZRL.js?v=9300deac:19251:20)
+    at workLoopSync (chunk-VIJJTZRL.js?v=9300deac:19190:13)
+    at renderRootSync (chunk-VIJJTZRL.js?v=9300deac:19169:15)
+    at recoverFromConcurrentError (chunk-VIJJTZRL.js?v=9300deac:18786:28)
+    at performSyncWorkOnRoot (chunk-VIJJTZRL.js?v=9300deac:18932:28)Understand this error
+index.tsx?t=1748148420207:27 Uncaught ReferenceError: useSelector is not defined
+    at Courses (index.tsx?t=1748148420207:27:27)
+    at renderWithHooks (chunk-VIJJTZRL.js?v=9300deac:11596:26)
+    at mountIndeterminateComponent (chunk-VIJJTZRL.js?v=9300deac:14974:21)
+    at beginWork (chunk-VIJJTZRL.js?v=9300deac:15962:22)
+    at HTMLUnknownElement.callCallback2 (chunk-VIJJTZRL.js?v=9300deac:3680:22)
+    at Object.invokeGuardedCallbackDev (chunk-VIJJTZRL.js?v=9300deac:3705:24)
+    at invokeGuardedCallback (chunk-VIJJTZRL.js?v=9300deac:3739:39)
+    at beginWork$1 (chunk-VIJJTZRL.js?v=9300deac:19818:15)
+    at performUnitOfWork (chunk-VIJJTZRL.js?v=9300deac:19251:20)
+    at workLoopSync (chunk-VIJJTZRL.js?v=9300deac:19190:13)
+Courses @ index.tsx?t=1748148420207:27
+renderWithHooks @ chunk-VIJJTZRL.js?v=9300deac:11596
+mountIndeterminateComponent @ chunk-VIJJTZRL.js?v=9300deac:14974
+beginWork @ chunk-VIJJTZRL.js?v=9300deac:15962
+callCallback2 @ chunk-VIJJTZRL.js?v=9300deac:3680
+invokeGuardedCallbackDev @ chunk-VIJJTZRL.js?v=9300deac:3705
+invokeGuardedCallback @ chunk-VIJJTZRL.js?v=9300deac:3739
+beginWork$1 @ chunk-VIJJTZRL.js?v=9300deac:19818
+performUnitOfWork @ chunk-VIJJTZRL.js?v=9300deac:19251
+workLoopSync @ chunk-VIJJTZRL.js?v=9300deac:19190
+renderRootSync @ chunk-VIJJTZRL.js?v=9300deac:19169
+performSyncWorkOnRoot @ chunk-VIJJTZRL.js?v=9300deac:18927
+flushSyncCallbacks @ chunk-VIJJTZRL.js?v=9300deac:9166
+flushSync @ chunk-VIJJTZRL.js?v=9300deac:19012
+scheduleRoot @ chunk-VIJJTZRL.js?v=9300deac:20068
+(anonymous) @ @react-refresh:208
+performReactRefresh @ @react-refresh:190
+(anonymous) @ @react-refresh:586Understand this error
+index.tsx?t=1748148420207:27 Uncaught ReferenceError: useSelector is not defined
+    at Courses (index.tsx?t=1748148420207:27:27)
+    at renderWithHooks (chunk-VIJJTZRL.js?v=9300deac:11596:26)
+    at mountIndeterminateComponent (chunk-VIJJTZRL.js?v=9300deac:14974:21)
+    at beginWork (chunk-VIJJTZRL.js?v=9300deac:15962:22)
+    at HTMLUnknownElement.callCallback2 (chunk-VIJJTZRL.js?v=9300deac:3680:22)
+    at Object.invokeGuardedCallbackDev (chunk-VIJJTZRL.js?v=9300deac:3705:24)
+    at invokeGuardedCallback (chunk-VIJJTZRL.js?v=9300deac:3739:39)
+    at beginWork$1 (chunk-VIJJTZRL.js?v=9300deac:19818:15)
+    at performUnitOfWork (chunk-VIJJTZRL.js?v=9300deac:19251:20)
+    at workLoopSync (chunk-VIJJTZRL.js?v=9300deac:19190:13)
+Courses @ index.tsx?t=1748148420207:27
+renderWithHooks @ chunk-VIJJTZRL.js?v=9300deac:11596
+mountIndeterminateComponent @ chunk-VIJJTZRL.js?v=9300deac:14974
+beginWork @ chunk-VIJJTZRL.js?v=9300deac:15962
+callCallback2 @ chunk-VIJJTZRL.js?v=9300deac:3680
+invokeGuardedCallbackDev @ chunk-VIJJTZRL.js?v=9300deac:3705
+invokeGuardedCallback @ chunk-VIJJTZRL.js?v=9300deac:3739
+beginWork$1 @ chunk-VIJJTZRL.js?v=9300deac:19818
+performUnitOfWork @ chunk-VIJJTZRL.js?v=9300deac:19251
+workLoopSync @ chunk-VIJJTZRL.js?v=9300deac:19190
+renderRootSync @ chunk-VIJJTZRL.js?v=9300deac:19169
+recoverFromConcurrentError @ chunk-VIJJTZRL.js?v=9300deac:18786
+performSyncWorkOnRoot @ chunk-VIJJTZRL.js?v=9300deac:18932
+flushSyncCallbacks @ chunk-VIJJTZRL.js?v=9300deac:9166
+flushSync @ chunk-VIJJTZRL.js?v=9300deac:19012
+scheduleRoot @ chunk-VIJJTZRL.js?v=9300deac:20068
+(anonymous) @ @react-refresh:208
+performReactRefresh @ @react-refresh:190
+(anonymous) @ @react-refresh:586Understand this error
+@react-refresh:208 The above error occurred in the <Courses> component:
+
+    at Courses (http://localhost:5173/src/kambaz/courses/index.tsx?t=1748148420207:19:3)
+    at ProtectedRoute (http://localhost:5173/src/kambaz/account/ProtectedRoute.tsx:20:42)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at div
+    at Kambaz (http://localhost:5173/src/kambaz/index.tsx?t=1748148144188:30:33)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at Provider (http://localhost:5173/node_modules/.vite/deps/react-redux.js?v=9300deac:923:11)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4565:15)
+    at HashRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9300deac:592:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-VIJJTZRL.js?v=9300deac:14080
+update.callback @ chunk-VIJJTZRL.js?v=9300deac:14100
+callCallback @ chunk-VIJJTZRL.js?v=9300deac:11296
+commitUpdateQueue @ chunk-VIJJTZRL.js?v=9300deac:11313
+commitLayoutEffectOnFiber @ chunk-VIJJTZRL.js?v=9300deac:17141
+commitLayoutMountEffects_complete @ chunk-VIJJTZRL.js?v=9300deac:18030
+commitLayoutEffects_begin @ chunk-VIJJTZRL.js?v=9300deac:18019
+commitLayoutEffects @ chunk-VIJJTZRL.js?v=9300deac:17970
+commitRootImpl @ chunk-VIJJTZRL.js?v=9300deac:19406
+commitRoot @ chunk-VIJJTZRL.js?v=9300deac:19330
+performSyncWorkOnRoot @ chunk-VIJJTZRL.js?v=9300deac:18948
+flushSyncCallbacks @ chunk-VIJJTZRL.js?v=9300deac:9166
+flushSync @ chunk-VIJJTZRL.js?v=9300deac:19012
+scheduleRoot @ chunk-VIJJTZRL.js?v=9300deac:20068
+(anonymous) @ @react-refresh:208
+performReactRefresh @ @react-refresh:190
+(anonymous) @ @react-refresh:586Understand this error
+index.tsx?t=1748148420207:27 Uncaught (in promise) ReferenceError: useSelector is not defined
+    at Courses (index.tsx?t=1748148420207:27:27)
+    at renderWithHooks (chunk-VIJJTZRL.js?v=9300deac:11596:26)
+    at mountIndeterminateComponent (chunk-VIJJTZRL.js?v=9300deac:14974:21)
+    at beginWork (chunk-VIJJTZRL.js?v=9300deac:15962:22)
+    at beginWork$1 (chunk-VIJJTZRL.js?v=9300deac:19806:22)
+    at performUnitOfWork (chunk-VIJJTZRL.js?v=9300deac:19251:20)
+    at workLoopSync (chunk-VIJJTZRL.js?v=9300deac:19190:13)
+    at renderRootSync (chunk-VIJJTZRL.js?v=9300deac:19169:15)
+    at recoverFromConcurrentError (chunk-VIJJTZRL.js?v=9300deac:18786:28)
+    at performSyncWorkOnRoot (chunk-VIJJTZRL.js?v=9300deac:18932:28)
+Courses @ index.tsx?t=1748148420207:27
+renderWithHooks @ chunk-VIJJTZRL.js?v=9300deac:11596
+mountIndeterminateComponent @ chunk-VIJJTZRL.js?v=9300deac:14974
+beginWork @ chunk-VIJJTZRL.js?v=9300deac:15962
+beginWork$1 @ chunk-VIJJTZRL.js?v=9300deac:19806
+performUnitOfWork @ chunk-VIJJTZRL.js?v=9300deac:19251
+workLoopSync @ chunk-VIJJTZRL.js?v=9300deac:19190
+renderRootSync @ chunk-VIJJTZRL.js?v=9300deac:19169
+recoverFromConcurrentError @ chunk-VIJJTZRL.js?v=9300deac:18786
+performSyncWorkOnRoot @ chunk-VIJJTZRL.js?v=9300deac:18932
+flushSyncCallbacks @ chunk-VIJJTZRL.js?v=9300deac:9166
+flushSync @ chunk-VIJJTZRL.js?v=9300deac:19012
+scheduleRoot @ chunk-VIJJTZRL.js?v=9300deac:20068
+(anonymous) @ @react-refresh:208
+performReactRefresh @ @react-refresh:190
+(anonymous) @ @react-refresh:586Understand this error
+:5173/src/kambaz/courses/index.tsx?t=1748148423431:1 
+            
+            
+           Failed to load resource: the server responded with a status of 500 (Internal Server Error)Understand this error
+client:882 [vite] Failed to reload /src/kambaz/courses/index.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+error @ client:882
+warnFailedUpdate @ client:169
+fetchUpdate @ client:206Understand this error
+:5173/src/kambaz/courses/index.tsx?t=1748148426459:1 
+            
+            
+           Failed to load resource: the server responded with a status of 500 (Internal Server Error)Understand this error
+client:882 [vite] Failed to reload /src/kambaz/courses/index.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+error @ client:882
+warnFailedUpdate @ client:169
+fetchUpdate @ client:206Understand this error
+index.tsx:16 Current pathname: /Kambaz/Courses/RS101/Home
+index.tsx:16 Current pathname: /Kambaz/Courses/RS101/Home
+navigation.tsx:5 Course ID in Navigation: RS101
+navigation.tsx:5 Course ID in Navigation: RS101
+index.tsx:52 Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `Modules`. See https://reactjs.org/link/warning-keys for more information.
+    at li
+    at Modules (http://localhost:5173/src/kambaz/courses/modules/index.tsx:28:19)
+    at div
+    at div
+    at Home
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at div
+    at Courses (http://localhost:5173/src/kambaz/courses/index.tsx?t=1748148468834:27:35)
+    at ProtectedRoute (http://localhost:5173/src/kambaz/account/ProtectedRoute.tsx:20:42)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at div
+    at Kambaz (http://localhost:5173/src/kambaz/index.tsx?t=1748148468834:30:33)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4081:5)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4622:5)
+    at div
+    at Provider (http://localhost:5173/node_modules/.vite/deps/react-redux.js?v=9300deac:923:11)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-W2EC74SZ.js?v=9300deac:4565:15)
+    at HashRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9300deac:592:5)
+    at App
