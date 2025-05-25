@@ -1,6 +1,20 @@
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "./GreenCheckmark";
 import { FaPlus } from "react-icons/fa6";
+
+export default function ModuleControlButtons() {
+  return (
+    <div className="float-end">
+      <GreenCheckmark />
+      <FaPlus />
+      <IoEllipsisVertical className="fs-4" />
+    </div> );}
+    
+    
+/*
+import { IoEllipsisVertical } from "react-icons/io5";
+import GreenCheckmark from "./GreenCheckmark";
+import { FaPlus } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 
@@ -20,3 +34,4 @@ export default function ModuleControlButtons(
       </div>
     );
   }
+    */
