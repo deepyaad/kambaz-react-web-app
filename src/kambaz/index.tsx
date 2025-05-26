@@ -10,7 +10,6 @@ import { useState } from "react";
 import ProtectedRoute from "./account/ProtectedRoute";
 import { useSelector, useDispatch } from "react-redux";
 import { addCourse, deleteCourse, updateCourse } from "./courses/reducer";
-import CourseList from "./courses/list"; // add this
 
 
 export default function Kambaz() {
