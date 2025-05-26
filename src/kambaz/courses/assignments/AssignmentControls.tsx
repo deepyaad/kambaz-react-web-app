@@ -1,20 +1,33 @@
-// latest working code
-
 import {Container, InputGroup, Form, Button} from "react-bootstrap";
 import {BsSearch } from 'react-icons/bs';
 import { FaPlus } from "react-icons/fa6";
+import AssignmentEditor from "./editor";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function AssignmentControls() {
+  const { cid } = useParams();
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
  return (
     <Container>
-       <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
-       <FaPlus className="position-relative me-2" />
-       Assignment
+       <Button
+          onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments/new`)}
+          variant="danger"
+          size="lg"
+          className="me-1 float-end"
+          id="wd-add-assignment-btn"
+        >
+        <FaPlus className="position-relative me-2" />
+        Assignment
       </Button>
       <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-add-module-btn">
         <FaPlus className="position-relative me-2"/>
         Group
       </Button>
+
     <InputGroup className="mb-3 w-50">
         <InputGroup.Text>
             <BsSearch />

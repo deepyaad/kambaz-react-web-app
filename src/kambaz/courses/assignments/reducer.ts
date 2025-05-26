@@ -7,16 +7,17 @@ const initialState = {
 };
 
 const assignmentSlice = createSlice({
-    name: "assignment",
+    name: "assignments",
     initialState,
     reducers: {
         addAssignment: (state, { payload: assignment }) => {
-            const newAssignment: any = {
+            const newAssignment = {
                 _id: uuidv4(),
-                lessons: [],
-                name: assignment.name,
+                title: assignment.title,
                 course: assignment.course,
-            };
+                description: assignment.description,
+                due: assignment.due,
+              };
             state.assignments = [...state.assignments, newAssignment] as any;
         },
         deleteAssignment: (state, { payload: assignmentId }) => {

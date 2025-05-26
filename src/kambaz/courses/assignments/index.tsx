@@ -2,46 +2,72 @@ import AssignmentControls from "./AssignmentControls";
 import { ListGroup } from "react-bootstrap";
 import HeaderControlButtons from "./HeaderControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { BsGripVertical } from 'react-icons/bs'
+import { BsGripVertical } from 'react-icons/bs';
 import { TfiPencilAlt } from "react-icons/tfi";
 import { useParams } from "react-router";
-import * as db from "../../database";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
-    const { cid } = useParams();
-    const assignments = db.assignments;
+  const { cid } = useParams();
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
 
-    return (
-        <div>
-            <AssignmentControls /><br /><br /><br /><br />
-            <ListGroup className="rounded-0" id="wd-modules">
+  return (
+    <div>
+        {isFaculty && (
+            <AssignmentControls />
+        )}
+      <br /><br /><br /><br />
 
-                <ListGroup.Item className="wd-assignment p-3 ps-1 bg-secondary align-items-center">
-                    <BsGripVertical className="me-2 fs-3" /><b>ASSIGNMENTS</b> <HeaderControlButtons />
-                </ListGroup.Item>
+      <ListGroup className="rounded-0" id="wd-modules">
+        <ListGroup.Item className="wd-assignment p-3 ps-1 bg-secondary align-items-center">
+          <BsGripVertical className="me-2 fs-3" />
+          <b>ASSIGNMENTS</b>
+          <HeaderControlButtons />
+        </ListGroup.Item>
 
+        {assignments
+          .filter((assignment: any) => assignment.course === cid)
+          .map((assignment: any) => (
+            <ListGroup.Item className="wd-assignment p-3 ps-1" key={assignment._id}>
+              <BsGripVertical className="me-2 fs-3" />
+              <TfiPencilAlt className="me-2 fs-3 document-icon" />
 
-                {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => (
-                    <ListGroup.Item className="wd-assignment p-3 ps-1" key={assignment._id}>
-                        <BsGripVertical className="me-2 fs-3" />
-                        <TfiPencilAlt className="me-2 fs-3 document-icon" />
-                        <b>
-                            <a href={`#/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`} className="wd-assignment-link">
-                                {assignment.title}
-                            </a>
-                        </b>
-                        <AssignmentControlButtons />
-                        <p className="mb-0 ps-5 p-1">
-                            <span className="text-danger ps-4">Multiple Modules</span> |
-                            <b> Not available until </b> {assignment.available} at 12:00am |
-                            <b> Due </b> {assignment.due} at 11:59pm | 100 pts
-                        </p>
-                    </ListGroup.Item>
-                ))}
-            </ListGroup>
-        </div>
-    );
+              {isFaculty && (
+                <AssignmentControlButtons
+                  assignmentId={assignment._id}
+                  deleteAssignment={() => dispatch(deleteAssignment(assignment._id))}
+                />
+              )}
+
+              <b>
+                {isFaculty ? (
+                  <a
+                    href={`#/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`}
+                    className="wd-assignment-link"
+                  >
+                    {assignment.title}
+                  </a>
+                ) : (
+                  assignment.title
+                )}
+              </b>
+
+              <p className="mb-0 ps-5 p-1">
+                <span className="text-danger ps-4">Multiple Modules</span> |
+                <b> Not available until </b> {assignment.available} at 12:00am |
+                <b> Due </b> {assignment.due} at 11:59pm | {assignment.points} pts
+              </p>
+            </ListGroup.Item>
+          ))}
+      </ListGroup>
+    </div>
+  );
 }
+
 
 /*
 import AssignmentControls from "./AssignmentControls";

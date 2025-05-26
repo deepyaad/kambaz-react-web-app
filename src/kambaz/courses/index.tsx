@@ -1,43 +1,58 @@
-import CourseNavigation from "./navigation";
-import { FaAlignJustify } from "react-icons/fa";
-import { courses } from "../database";
-import { useParams, useLocation } from "react-router-dom";
-import Modules from "./modules/index";
-import Home from "./home"
-import Assignments from "./assignments/index";
-import AssignmentEditor from "./assignments/editor";
+import { useParams, useLocation, Navigate } from "react-router-dom";
 import { Route, Routes } from "react-router";
+import { useSelector } from "react-redux";
+import { FaAlignJustify } from "react-icons/fa";
+
+import CourseNavigation from "./navigation";
+import Modules from "./modules";
+import Home from "./home";
+import Assignments from "./assignments";
+import AssignmentEditor from "./assignments/editor";
 import PeopleTable from "./people/table";
 
 export default function Courses() {
   const { cid } = useParams();
-  const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
-  console.log("Current pathname:", pathname);
+
+  const { courses } = useSelector((state: any) => state.courseReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
+
+  const course = courses.find((c: any) => c._id === cid);
+  const enrolled = enrollments.some(
+    (e: any) => e.user === currentUser?._id && e.course === cid
+  );
+
+  if (!enrolled) {
+    return <Navigate to="/Kambaz/Dashboard" />;
+  }
+
+  const currentTab = pathname.split("/")[4] || "Home";
 
   return (
     <div id="wd-courses">
       <h2 className="text-danger">
         <FaAlignJustify className="me-4 fs-4 mb-1" />
-        {course && course.name} &gt; {pathname.split("/")[4]}
-        
-
+        {course?.name} &gt; {currentTab}
       </h2>
+
       <div className="d-flex">
         <div className="d-none d-md-block">
           <CourseNavigation />
         </div>
+
         <Routes>
           <Route path="Home" element={<Home />} />
           <Route path="Modules" element={<Modules />} />
           <Route path="Assignments" element={<Assignments />} />
           <Route path="Assignments/:aid" element={<AssignmentEditor />} />
           <Route path="People" element={<PeopleTable />} />
-      </Routes>
+        </Routes>
       </div>
     </div>
   );
 }
+
 /*
 
 import CourseNavigation from "./navigation";
