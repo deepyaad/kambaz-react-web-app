@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { assignments } from "../../database"
+// import { assignments } from "../../database";
+// import assignments from "../../database/assignments.js";
 import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
-    assignments: assignments,
+    assignments: [] as any[],
 };
 
 const assignmentSlice = createSlice({

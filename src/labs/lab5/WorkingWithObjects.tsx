@@ -2,7 +2,6 @@
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 import { FormControl, FormCheck } from "react-bootstrap";
 import { useState } from "react";
-// 5.2.3.4 On Your Own
 
 export default function WorkingWithObjects() {
     const [assignment, setAssignment] = useState({
@@ -62,19 +61,35 @@ export default function WorkingWithObjects() {
             Get Module Name
         </a><hr/>
         <h4 className="mt-4">Modifying Score & Completed</h4>
-      <FormControl type="number" value={assignment.score}
-        onChange={(e) => setAssignment({ ...assignment, score: Number(e.target.value) })}
+        <a className="btn btn-primary mt-2 me-2 mb-3"
+          href={`${ASSIGNMENT_API_URL}/score/${assignment.score}`}>
+          Update Score
+        </a>
+      <FormControl type="number"
+        defaultValue={assignment.score}
+        onChange={(e) => {
+          const value = e.target.value === "" ? 0 : Number(e.target.value);
+          setAssignment({ ...assignment, score: value });
+        }}
         />
-      <a className="btn btn-primary mt-2 me-2"
-        href={`${ASSIGNMENT_API_URL}/score/${assignment.score}`}>
-        Update Score
+      <hr />
+      <a className="btn btn-primary mt-2 mb-3"
+        href={`${ASSIGNMENT_API_URL}/completed/${assignment.completed}`}>
+        Update Completed
       </a>
       <FormCheck type="checkbox" label="Completed?" checked={assignment.completed}
         onChange={(e) => setAssignment({ ...assignment, completed: e.target.checked })}
       />
-      <a className="btn btn-primary mt-2"
-        href={`${ASSIGNMENT_API_URL}/completed/${assignment.completed}`}>
-        Update Completed
+      <hr />
+      <a className="btn btn-primary mt-2 me-2 mb-3"
+        href={`${MODULE_API_URL}/description/${module.description}`}>
+        Update Description
       </a>
+      <FormControl className="w-75 mb-5" id="wd-module-name"
+        defaultValue={module.description} onChange={(m) =>
+        setModule({ ...module, description: m.target.value })}
+      />
+
+
     </div>
 );}

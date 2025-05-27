@@ -1,15 +1,43 @@
+SERVER SIDE
+├── kambaz
+│   ├── courses
+│   │   ├── dao.js
+│   │   └── routes.js
+│   └── database
+│   │   ├── assignments.js
+│   │   └── courses.js
+│   │   ├── enrollments.js
+│   │   └── grades.js
+│   │   └── index.js
+│   │   └── modules.js
+│   │   └── users.js
+│   ├── enrollments
+│   │   ├── dao.js
+│   ├── modules
+│   │   ├── dao.js
+│   │   └── routes.js
+│   └── users
+│   │   ├── dao.js
+│   │   └── routes.js
+├── index.js
+
+CLIENT SIDE
 src/Kambaz
 ├── Account
+│   ├── client.ts
 │   ├── index.tsx
 │   └── Navigation.tsx
 │   ├── Profile.tsx
 │   └── ProtectedRoute.tsx
 │   ├── reducer.ts
 │   └── Signin.tsx
+│   └── session.tsx
 │   └── Signup.tsx
 ├── Courses
 │   ├── index.tsx
+│   ├── client.ts
 │   └── Navigation.tsx
+│   └── reducer.ts
 │   ├── Assignments
 │   │   ├── AssignmentControlButtons.tsx
 │   │   └── AssignmentControls.tsx
@@ -24,6 +52,7 @@ src/Kambaz
 │   │   └── ModuleControls.tsx
 │   │   ├── ModuleEditor.tsx
 │   │   └── index.tsx
+│   │   └── client.ts
 │   │   └── reducer.ts
 │   │   └── LessonControlButtons.tsx
 │   └── People
@@ -37,7 +66,10 @@ src/Kambaz
 │   ├── index.ts
 │   └── modules.json
 │   └── users.json
+│   └── grades.json
 └── index
-└── Navigation
-└── store
+├── enrollments
+│   ├── reducer.ts
+└── navigation.tsx
+└── store.ts
 └── style.css
