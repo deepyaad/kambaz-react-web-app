@@ -8,6 +8,10 @@ export default defineConfig({
       'react-router-dom': '/node_modules/react-router-dom',
     },
   },
+  build: {
+    minify: false,
+    sourcemap: true
+  }
 });
 // import { defineConfig } from 'vite'
 // import react from '@vitejs/plugin-react'
