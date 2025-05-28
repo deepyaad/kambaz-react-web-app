@@ -12,6 +12,7 @@ import { updateCourse } from "./courses/reducer";
 import * as userClient from "./account/client";
 import * as courseClient from "./courses/client";
 
+
 export default function Kambaz() {
   const [courses, setCourses] = useState<any[]>([]);
   const [course, setCourse] = useState<any>({
@@ -29,7 +30,7 @@ export default function Kambaz() {
 
   const fetchCourses = async () => {
     try {
-      const courses = await userClient.findMyCourses();
+      const courses = await courseClient.fetchAllCourses();
       setCourses(courses);
     } catch (error) {
       console.error("Failed to fetch courses", error);
@@ -41,12 +42,12 @@ export default function Kambaz() {
   }, [currentUser]);
 
   const deleteCourse = async (courseId: string) => {
-    await courseClient.deleteCourse(courseId);
+    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
   const addNewCourse = async () => {
-    const newCourse = await userClient.createCourse(course);
+    const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse]);
   };
 
