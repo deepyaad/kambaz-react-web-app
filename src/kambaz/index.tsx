@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 import Session from "./account/session";
 import ProtectedRoute from "./account/ProtectedRoute";
 import { useSelector,  } from "react-redux"; // useDispatch
-// import { updateCourse } from "./courses/reducer";
 import * as userClient from "./account/client";
 import * as courseClient from "./courses/client";
 
@@ -25,11 +24,9 @@ export default function Kambaz() {
   });
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  // const dispatch = useDispatch();
-
   const fetchCourses = async () => {
     try {
-      const courses = await userClient.findMyCourses();
+      const courses = await courseClient.fetchAllCourses();
       setCourses(courses);
     } catch (error) {
       console.error("Failed to fetch courses", error);

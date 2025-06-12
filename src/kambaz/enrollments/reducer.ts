@@ -34,4 +34,3 @@ const enrollmentSlice = createSlice({
 
 export const { enroll, unenroll } = enrollmentSlice.actions;
 export default enrollmentSlice.reducer;
-

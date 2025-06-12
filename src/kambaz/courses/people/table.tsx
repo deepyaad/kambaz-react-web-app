@@ -1,10 +1,18 @@
 import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import * as db from "../../database";
+//import * as db from "../../database";
 export default function PeopleTable() {
   const { cid } = useParams();
-  const { users, enrollments } = db;
+  //const { users, enrollments } = db;
+    const users = [
+        { _id: "1", firstName: "John", lastName: "Doe", loginId: "johndoe", section: "A", role: "Student", lastActivity: "2023-10-01", totalActivity: "5 hours" },
+        { _id: "2", firstName: "Jane", lastName: "Smith", loginId: "janesmith", section: "B", role: "Faculty", lastActivity: "2023-10-02", totalActivity: "10 hours" }
+    ];
+    const enrollments = [
+        { user: "1", course: "1234" },
+        { user: "2", course: "1234" }
+    ];
   return (
     <div id="wd-people-table">
         <Table>

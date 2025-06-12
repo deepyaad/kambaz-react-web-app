@@ -3,6 +3,8 @@ import { Row, Card, FormControl, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { enroll, unenroll } from "../enrollments/reducer";
 import { useState } from "react";
+// import * as enrollmentClient from "../enrollments/client";
+
 
 export default function Dashboard({
   courses,
@@ -19,11 +21,12 @@ export default function Dashboard({
   deleteCourse: (courseId: string) => void;
   updateCourse: () => void;
 }) {
-  const dispatch = useDispatch();
+
   const [showAllCourses, setShowAllCourses] = useState(false);
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
+
 
   const isFaculty = currentUser?.role === "FACULTY";
 
@@ -34,6 +37,11 @@ export default function Dashboard({
   const visibleCourses = showAllCourses
     ? courses
     : courses.filter((c: any) => enrolledCourseIds.includes(c._id));
+
+  const dispatch = useDispatch();
+
+
+
 
   return (
     <div id="wd-dashboard">
@@ -93,7 +101,6 @@ export default function Dashboard({
               dispatch(enroll({ userId: currentUser._id, courseId: c._id }));
             const handleUnenroll = () =>
               dispatch(unenroll({ userId: currentUser._id, courseId: c._id }));
-
             return (
               <Col key={c._id} className="wd-dashboard-course" style={{ width: "300px" }}>
                 <Card>
@@ -118,9 +125,11 @@ export default function Dashboard({
                         {c.description}
                       </Card.Text>
 
+
                       <Button variant="primary" className="me-2">
                         Go
                       </Button>
+
 
                       {isEnrolled ? (
                         <Button
