@@ -8,8 +8,8 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import * as coursesClient from "../client";
 import * as assignmentsClient from "./client";
-import { useState, useEffect} from "react";
-import { addAssignment, deleteAssignment, updateAssignment, editAssignment, setAssignments } from "./reducer";
+import { useEffect} from "react";
+import { deleteAssignment, setAssignments } from "./reducer";
 
 
 export default function Assignments() {
@@ -19,26 +19,12 @@ export default function Assignments() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
 
-  const [assignmentName, setAssignmentName] = useState("");
 
-
-
-  const saveAssignment = async (assignment: any) => {
-      await assignmentsClient.updateAssignment(assignment);
-      dispatch(updateAssignment(assignment));
-  };
 
 
   const removeAssignment = async (assId: string) => {
       await assignmentsClient.deleteAssignment(assId);
       dispatch(deleteAssignment(assId));
-  };
-
-  const createAssignmentForCourse = async () => {
-      if (!cid) return;
-      const newAssignment = { name: assignmentName, course: cid };
-      const assignment = await coursesClient.createModuleForCourse(cid, newAssignment);
-      dispatch(addAssignment(assignment));
   };
 
   const fetchAssignments = async () => {
