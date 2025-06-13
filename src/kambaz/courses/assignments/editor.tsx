@@ -4,6 +4,8 @@ import { useParams, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client"
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -12,7 +14,7 @@ export default function AssignmentEditor() {
   const { assignments } = useSelector((state: any) => state.assignmentReducer);;
   const isNew = aid === "new";
 
-  // 👇 Default state for new or editing assignment
+
   const [assignment, setAssignment] = useState<any>({
     title: "",
     description: "",
@@ -26,7 +28,7 @@ export default function AssignmentEditor() {
   const [originalAssignment, setOriginalAssignment] = useState<any>(null);
   
 
-  // 👇 Load existing assignment into form if editing
+
   useEffect(() => {
     if (!isNew) {
       const found = assignments.find((a: any) => a._id === aid);
@@ -35,14 +37,15 @@ export default function AssignmentEditor() {
     }
   }, [aid, assignments, isNew]);
 
-  // const formatDate = (date: string) =>
-  //  new Date(date).toISOString().split("T")[0];
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    if (!cid) return;
     if (isNew) {
-      dispatch(addAssignment(assignment));
+      const saved = await coursesClient.createAssignmentForCourse(cid, assignment);
+      dispatch(addAssignment(saved));
     } else {
-      dispatch(updateAssignment(assignment));
+      const updated = await assignmentsClient.updateAssignment(assignment);
+      dispatch(updateAssignment(updated));
     }
     navigate(`/Kambaz/Courses/${cid}/Assignments`);
   };
