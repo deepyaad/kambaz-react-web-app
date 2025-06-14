@@ -2,9 +2,9 @@ import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import PeopleDetails from "./details";
 import { Link,  } from "react-router-dom"; // useParams
+// import { useState, useEffect } from "react";
 
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
-  //const { cid } = useParams(); // if you need the course ID later
 
   return (
     <div id="wd-people-table">
