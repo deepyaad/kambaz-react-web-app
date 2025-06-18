@@ -9,12 +9,16 @@ import Session from "./account/session";
 import ProtectedRoute from "./account/ProtectedRoute";
 import { useSelector,  } from "react-redux"; // useDispatch
 import * as courseClient from "./courses/client";
+import * as userClient from "./account/client";
+
 
 
 export default function Kambaz() {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  console.log(currentUser)
   const [courses, setCourses] = useState<any[]>([]);
   const [course, setCourse] = useState<any>({
-    _id: "1234",
+    //_id: "1234",
     name: "New Course",
     number: "New Number",
     startDate: "2023-09-10",
@@ -23,19 +27,91 @@ export default function Kambaz() {
     image: "Aerodynamics.png",
   });
 
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const fetchCourses = async () => {
+  const [enrolling, setEnrolling] = useState<boolean>(false);
+  const findCoursesForUser = async () => {
     try {
-      const courses = await courseClient.fetchAllCourses();
+      const courses = await userClient.findCoursesForUser(currentUser._id);
       setCourses(courses);
     } catch (error) {
-      console.error("Failed to fetch courses", error);
+      console.error(error);
     }
   };
 
+  const updateEnrollment = async (courseId: string, enrolled: boolean) => {
+   if (enrolled) {
+     await userClient.enrollIntoCourse(currentUser._id, courseId);
+   } else {
+     await userClient.unenrollFromCourse(currentUser._id, courseId);
+   }
+   setCourses(
+     courses.map((course) => {
+       if (course._id === courseId) {
+         return { ...course, enrolled: enrolled };
+       } else {
+         return course;
+       }
+     })
+   );
+ };
+
+
+  const fetchCourses = async () => {
+  console.log("fetchCourses called. CurrentUser:", currentUser, "Enrolling:", enrolling);
+  try {
+    if (currentUser && currentUser._id) {
+        console.log("Fetching courses for logged-in user.");
+        const allCourses = await courseClient.fetchAllCourses();
+        const enrolledCourses = await userClient.findCoursesForUser(
+          currentUser._id
+        );
+        console.log("Fetched allCourses:", allCourses);
+        console.log("Fetched enrolledCourses:", enrolledCourses);
+
+        const courses = allCourses.map((course: any) => {
+          // ... map logic
+          return course; // Or { ...course, enrolled: true/false }
+        });
+        console.log("Final courses after mapping:", courses);
+        setCourses(courses);
+    } else {
+      console.log("No current user, fetching all courses.");
+      const allCourses = await courseClient.fetchAllCourses();
+      console.log("Fetched allCourses (no user):", allCourses);
+      setCourses(allCourses);
+    }
+  } catch (error) {
+    console.error("Error in fetchCourses:", error);
+    setCourses([]);
+  }
+};
+  /*
+  const fetchCourses = async () => {
+    try {
+      const allCourses = await courseClient.fetchAllCourses();
+      const enrolledCourses = await userClient.findCoursesForUser(
+        currentUser._id
+      );
+      const courses = allCourses.map((course: any) => {
+        if (enrolledCourses.find((c: any) => c._id === course._id)) {
+          return { ...course, enrolled: true };
+        } else {
+          return course;
+        }
+      });
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  */
+
   useEffect(() => {
-    fetchCourses();
-  }, [currentUser]);
+    if (enrolling) {
+      fetchCourses();
+    } else {
+      findCoursesForUser();
+    }
+  }, [currentUser, enrolling]);
 
   const deleteCourse = async (courseId: string) => {
     await courseClient.deleteCourse(courseId);
@@ -75,6 +151,8 @@ export default function Kambaz() {
                     addNewCourse={addNewCourse}
                     deleteCourse={deleteCourse}
                     updateCourse={updateCourse}
+                    enrolling={enrolling} setEnrolling={setEnrolling}
+                    updateEnrollment={updateEnrollment}
                   />
                 </ProtectedRoute>
               }
