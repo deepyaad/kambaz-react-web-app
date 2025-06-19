@@ -22,6 +22,14 @@ export const createAssignmentForCourse = async (courseId: string, assignment: an
   return response.data;
 };
 
+export const createQuizForCourse = async (courseId: string, quiz: any) => {
+  const response = await axiosWithAuth.post(
+    `${COURSES_API}/${courseId}/quizzes`,
+    quiz
+  );
+  return response.data;
+};
+
 
 export const fetchAllCourses = async () => {
   const { data } = await axiosWithAuth.get(COURSES_API);
@@ -50,6 +58,12 @@ export const findAssignmentsForCourse = async (courseId: string) => {
   return response.data;
 };
 
+export const findQuizzesForCourse = async (courseId: string) => {
+  const response = await axiosWithAuth
+    .get(`${COURSES_API}/${courseId}/quizzes`);
+  return response.data;
+};
+
 
 export const enrollInCourse = async (
   courseId: string,
@@ -74,7 +88,7 @@ export const fetchEnrollmentsForUser = async (userId: string) => {
   const response = await axios.get(`${REMOTE_SERVER}/api/users/${userId}/courses`, {
     withCredentials: true,
   });
-  return response.data; // expected to be enrollment/course array
+  return response.data; 
 };
 
 

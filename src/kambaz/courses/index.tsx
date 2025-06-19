@@ -9,6 +9,10 @@ import Home from "./home";
 import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/editor";
 import PeopleTable from "./people/table";
+import Quizzes from "./quizzes";
+import QuizEditor from "./quizzes/editor";
+import QuizDetails from "./quizzes/details";
+import QuizPreview from "./quizzes/preview";
 
 export default function Courses() {
   const { cid } = useParams();
@@ -47,7 +51,14 @@ export default function Courses() {
           <Route path="Modules" element={<Modules />} />
           <Route path="Assignments" element={<Assignments />} />
           <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+          <Route path="Quizzes" element={<Quizzes />} />
+          <Route path="Quizzes/:qid" element={<QuizEditor />} />
           <Route path="People" element={<PeopleTable />} />
+          <Route path="Quizzes" element={<Quizzes />} />
+          <Route path="Quizzes/:qid/editor" element={<QuizEditor />} /> 
+          <Route path="Quizzes/new/editor" element={<QuizEditor />} />
+          <Route path="Quizzes/:qid/preview" element={<QuizPreview />} /> 
+          <Route path="Quizzes/:qid" element={<QuizDetails />} /> 
         </Routes>
       </div>
     </div>
