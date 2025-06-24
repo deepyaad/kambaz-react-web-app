@@ -1,10 +1,33 @@
-// QuizQuestionsEditor.tsx
-import { useState } from "react";
-import { Button, Card, FormGroup, FormControl, FormLabel, Form } from "react-bootstrap";
+import { Button, Card, FormGroup, FormLabel, Form } from "react-bootstrap"; // FormControl
+import MultipleChoiceEditor from "./MultipleChoiceEditor";
+import TrueFalseEditor from "./TrueFalseEditor";
+import FillBlankEditor from "./FillBlankEditor";
 
-export default function QuizQuestionsEditor({ quiz, setQuiz, onSave, onCancel }: any) {
+interface Question {
+  type: string;
+  title: string;
+  points: number;
+  options?: string[];
+  correctAnswer?: any;
+  answers?: string[];
+  editing: boolean;
+}
+
+interface QuizQuestionsEditorProps {
+  quiz: { questions: Question[] };
+  setQuiz: (quiz: any) => void;
+  onSave: () => void;
+  onCancel: () => void;
+}
+
+export default function QuizQuestionsEditor({
+  quiz,
+  setQuiz,
+  onSave,
+  onCancel,
+}: QuizQuestionsEditorProps) {
   const handleAddQuestion = () => {
-    const newQuestion = {
+    const newQuestion: Question = {
       type: "Multiple Choice",
       title: "",
       options: ["", ""],
@@ -18,6 +41,12 @@ export default function QuizQuestionsEditor({ quiz, setQuiz, onSave, onCancel }:
     });
   };
 
+  const handleUpdateQuestion = (index: number, updatedQuestion: Question) => {
+    const updated = [...quiz.questions];
+    updated[index] = updatedQuestion;
+    setQuiz({ ...quiz, questions: updated });
+  };
+
   return (
     <div className="p-3 mb-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -25,21 +54,9 @@ export default function QuizQuestionsEditor({ quiz, setQuiz, onSave, onCancel }:
         <Button onClick={handleAddQuestion}>+ New Question</Button>
       </div>
 
-      {quiz.questions?.map((q: any, index: number) =>
+      {quiz.questions?.map((q, index) =>
         q.editing ? (
           <Card className="mb-3 p-3" key={index}>
-            <FormGroup className="mb-2">
-              <FormLabel>Question Title</FormLabel>
-              <FormControl
-                value={q.title}
-                onChange={(e) => {
-                  const updated = [...quiz.questions];
-                  updated[index].title = e.target.value;
-                  setQuiz({ ...quiz, questions: updated });
-                }}
-              />
-            </FormGroup>
-
             <FormGroup className="mb-2">
               <FormLabel>Question Type</FormLabel>
               <Form.Select
@@ -56,77 +73,33 @@ export default function QuizQuestionsEditor({ quiz, setQuiz, onSave, onCancel }:
               </Form.Select>
             </FormGroup>
 
-            {q.type === "Multiple Choice" &&
-              q.options?.map((opt: string, i: number) => (
-                <FormGroup key={i} className="mb-2">
-                  <FormLabel>Option {i + 1}</FormLabel>
-                  <FormControl
-                    value={opt}
-                    onChange={(e) => {
-                      const updated = [...quiz.questions];
-                      updated[index].options[i] = e.target.value;
-                      setQuiz({ ...quiz, questions: updated });
-                    }}
-                  />
-                </FormGroup>
-              ))}
             {q.type === "Multiple Choice" && (
-              <Button
-                size="sm"
-                onClick={() => {
-                  const updated = [...quiz.questions];
-                  updated[index].options.push("");
-                  setQuiz({ ...quiz, questions: updated });
-                }}
-                className="mb-2"
-              >
-                Add Option
-              </Button>
-            )}
-
-            {q.type === "True/False" && (
-              <FormGroup className="mb-2">
-                <FormLabel>Correct Answer</FormLabel>
-                <Form.Select
-                  value={q.correctAnswer}
-                  onChange={(e) => {
-                    const updated = [...quiz.questions];
-                    updated[index].correctAnswer = e.target.value;
-                    setQuiz({ ...quiz, questions: updated });
-                  }}
-                >
-                  <option value="True">True</option>
-                  <option value="False">False</option>
-                </Form.Select>
-              </FormGroup>
-            )}
-
-            {q.type === "Fill in the Blank" && (
-              <FormGroup className="mb-2">
-                <FormLabel>Correct Answer</FormLabel>
-                <FormControl
-                  value={q.correctAnswer}
-                  onChange={(e) => {
-                    const updated = [...quiz.questions];
-                    updated[index].correctAnswer = e.target.value;
-                    setQuiz({ ...quiz, questions: updated });
-                  }}
-                />
-              </FormGroup>
-            )}
-
-            <FormGroup className="mb-2">
-              <FormLabel>Points</FormLabel>
-              <FormControl
-                type="number"
-                value={q.points}
-                onChange={(e) => {
-                  const updated = [...quiz.questions];
-                  updated[index].points = parseInt(e.target.value);
-                  setQuiz({ ...quiz, questions: updated });
-                }}
+              <MultipleChoiceEditor
+                question={q}
+                index={index}
+                quiz={quiz}
+                setQuiz={setQuiz}
+                onChange={(updated: Question) => handleUpdateQuestion(index, updated)}
               />
-            </FormGroup>
+            )}
+            {q.type === "True/False" && (
+              <TrueFalseEditor
+                question={q}
+                index={index}
+                quiz={quiz}
+                setQuiz={setQuiz}
+                onChange={(updated: Question) => handleUpdateQuestion(index, updated)}
+              />
+            )}
+            {q.type === "Fill in the Blank" && (
+              <FillBlankEditor
+                question={q}
+                index={index}
+                quiz={quiz}
+                setQuiz={setQuiz}
+                onChange={(updated: Question) => handleUpdateQuestion(index, updated)}
+              />
+            )}
 
             <div className="d-flex justify-content-end">
               <Button
@@ -178,7 +151,7 @@ export default function QuizQuestionsEditor({ quiz, setQuiz, onSave, onCancel }:
         <h5>
           Total Points:{" "}
           {quiz.questions?.reduce(
-            (sum: number, q: any) => sum + (parseInt(q.points) || 0),
+            (sum: number, q) => sum + (parseInt(q.points.toString()) || 0),
             0
           ) || 0}
         </h5>
