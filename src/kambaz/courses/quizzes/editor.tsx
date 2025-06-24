@@ -31,14 +31,18 @@ export default function QuizEditor() {
   const [activeTab, setActiveTab] = useState("details");
 
   useEffect(() => {
-    if (!isNew) {
-      const found = quizzes.find((q: any) => q._id === qid);
-      if (found) {
-        setQuiz(found);
-        setOriginalQuiz(found);
+    async function fetchQuiz() {
+      if (!isNew && qid) {
+        const foundQuiz = await quizzesClient.findQuizById(qid);
+        if (foundQuiz) {
+          setQuiz(foundQuiz);
+          setOriginalQuiz(foundQuiz);
+        }
       }
     }
-  }, [qid, quizzes, isNew]);
+    fetchQuiz();
+  }, [qid, isNew]);
+
 
   const handleSave = async () => {
     if (!cid) return;

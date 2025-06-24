@@ -34,7 +34,9 @@ export default function Dashboard({
     .filter((e: any) => e.user === currentUser?._id)
     .map((e: any) => e.course);
 
-  const visibleCourses = showAllCourses
+const visibleCourses = isFaculty
+  ? courses.filter((c: any) => c.author === currentUser._id)
+  : showAllCourses
     ? courses
     : courses.filter((c: any) => enrolledCourseIds.includes(c._id));
 

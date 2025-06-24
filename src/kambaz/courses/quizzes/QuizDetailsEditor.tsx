@@ -6,9 +6,9 @@ export default function QuizDetailsEditor({ quiz, setQuiz, onSave, onCancel }: a
       <FormGroup className="mb-3">
         <FormLabel>Quiz Name</FormLabel>
         <FormControl
-          type="text"
-          value={quiz.title}
-          onChange={(e) => setQuiz({ ...quiz, title: e.target.value })}
+            type="text"
+            value={quiz.title || ""}
+            onChange={(e) => setQuiz({ ...quiz, title: e.target.value })}
         />
       </FormGroup>
 

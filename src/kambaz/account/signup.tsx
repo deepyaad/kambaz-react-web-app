@@ -23,39 +23,12 @@ export default function Signup() {
              className="wd-username b-2" placeholder="username" />
       <FormControl value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })}
              className="wd-password mb-2" placeholder="password" type="password"/>
+      <FormControl value={user.role} onChange={(e) => setUser({ ...user, role:  e.target.value })} as="select"
+              className="form-control mb-2" id="wd-role">
+            <option value="USER">User</option>            <option value="ADMIN">Admin</option>
+            <option value="FACULTY">Faculty</option>      <option value="STUDENT">Student</option>
+      </FormControl>
       <button onClick={signup} className="wd-signup-btn btn btn-primary mb-2 w-100"> Sign up </button><br />
       <Link to="/Kambaz/Account/Signin" className="wd-signin-link">Sign in</Link>
     </div>
 );}
-
-
-/*
-
-import { Link } from "react-router-dom";
-import { Form } from "react-bootstrap";
-
-export default function Signup() {
-  return (
-    <div id="wd-signup-screen">
-      <h3>Sign up</h3>
-      <Form.Control id="wd-username"
-             placeholder="username"
-             className="mb-0"/><br />
-      
-      <Form.Control id="wd-password"
-             placeholder="password" type="password"
-             className="mb-0"/><br />
-
-      <Form.Control id="wd-password-verify"
-             placeholder="verify password" type="password"
-             className="mb-0"/><br />
-      
-      <Link id="wd-signup-btn"
-            to="/Kambaz/Account/Profile"
-            className="btn btn-primary w-100 mb-2">
-            Sign up </Link><br />
-      <Link id="wd-signin-link" to="/Kambaz/Account/Signin">Sign in</Link>
-    </div>
-  );
-}
-  */

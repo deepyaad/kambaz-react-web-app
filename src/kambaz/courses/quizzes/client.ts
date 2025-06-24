@@ -7,8 +7,8 @@ const axiosWithCredentials = axios.create({
   withCredentials: true,
 });
 
-export const updateQuiz = async (quizId: string, quizUpdates: any) => { // Corrected signature
-  const { data } = await axiosWithCredentials.put(`${QUIZZES_API}/${quizId}`, quizUpdates); // Use quizId and quizUpdates
+export const updateQuiz = async (quizId: string, quizUpdates: any) => { 
+  const { data } = await axiosWithCredentials.put(`${QUIZZES_API}/${quizId}`, quizUpdates);
   return data;
 };
 
