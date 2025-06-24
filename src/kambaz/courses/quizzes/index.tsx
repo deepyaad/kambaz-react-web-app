@@ -2,9 +2,9 @@ import QuizControls from "./QuizControls";
 import { ListGroup } from "react-bootstrap";
 import QuizControlButtons from "./QuizControlButtons";
 import { BsGripVertical } from 'react-icons/bs';
-import { RxRocket } from "react-icons/rx"; // For published icon
-import { FaBan } from "react-icons/fa"; // For unpublished icon
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
+import { RxRocket } from "react-icons/rx"; 
+import { FaBan } from "react-icons/fa"; 
+import { useParams, useNavigate } from "react-router-dom"; 
 import { useDispatch, useSelector } from "react-redux";
 import * as coursesClient from "../client";
 import * as quizzesClient from "./client";
@@ -15,7 +15,7 @@ import { deleteQuiz, setQuizzes } from "./reducer";
 
 export default function Quizzes() {
   const { cid } = useParams();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const { quizzes } = useSelector((state: any) => state.quizReducer) || { quizzes: [] };
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
